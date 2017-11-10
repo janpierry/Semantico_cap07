@@ -5,7 +5,7 @@ import parser.*;
 
 public class MethodDeclNode extends GeneralNode {
     public int dim;
-    public Token isFinal;
+    public Token hasfinal;
     public Token escopo;
     public PrimitiveTypeNode tipo;
     public Token name;
@@ -14,7 +14,7 @@ public class MethodDeclNode extends GeneralNode {
     public MethodDeclNode(Token a, Token b, Token t, int k, Token t2, MethodBodyNode m) {
         super(t);
         escopo = a;
-        isFinal = b;
+        hasfinal = b;
         dim = k;
         name = t2;
         body = m;
