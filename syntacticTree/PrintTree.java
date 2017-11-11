@@ -628,7 +628,7 @@ public class PrintTree {
         printExpreNode((ExpreNode) x.node);
         printExpreListNode(x.next);
     }
-//parou aqui
+
     // --------------------- Expressao relacional -------------------
     public void numberRelationalNode(RelationalNode x) {
         if (x == null) {
@@ -637,11 +637,11 @@ public class PrintTree {
 
         x.number = kk++;
 
+        numberExpreNode(x.expr1);
         if(x.expr2 != null){
-        	numberExpreNode(x.expr1);
         	numberExpreNode(x.expr2);
     	}else if(x.lista != null){
-
+    		numberExpreListNode(x.lista);
     	}
 
     }
@@ -650,12 +650,33 @@ public class PrintTree {
         if (x == null) {
             return;
         }
-
+        /*
         System.out.println();
         System.out.print(x.number + ": RelationalNode ===> " + x.expr1.number +
             " " + x.position.image + " " + x.expr2.number);
-        printExpreNode(x.expr1);
-        printExpreNode(x.expr2);
+        */
+
+        if(x.expr2 != null){
+        	System.out.println();
+        	System.out.print(x.number + ": RelationalNode ===> " + x.expr1.number +
+            " " + x.position.image + " " + x.expr2.number);
+
+        	printExpreNode(x.expr1);
+        	printExpreNode(x.expr2);
+        }else if(x.lista != null){
+        	System.out.println();
+        	System.out.print(x.number + ": RelationalNode ===> " + ((x.possivelNull == null) ? "null" : x.possivelNull.image) + " " + x.expr1.number +
+            " " + x.lista.number);
+
+        	printExpreNode(x.expr1);
+        	printExpreListNode(x.lista);
+        }else{
+        	System.out.println();
+        	System.out.print(x.number + ": RelationalNode ===> " + x.position + " " + ((x.possivelNull == null) ? "null" : x.possivelNull.image) + " " +
+            " " + x.expr1.number);
+
+        	printExpreNode(x.expr1);
+        }
     }
 
     // ------------------------ Soma ou subtracao  -------------------
@@ -724,7 +745,7 @@ public class PrintTree {
             " " + x.expr.number);
         printExpreNode(x.expr);
     }
-
+    //parou aqui
     // -------------------------- Constante inteira ----------------------
     public void numberIntConstNode(IntConstNode x) {
         if (x == null) {
@@ -760,6 +781,132 @@ public class PrintTree {
         System.out.println();
         System.out.print(x.number + ": StringConstNode ===> " +
             x.position.image);
+    }
+
+    // -------------------------- Constante booleano ----------------------
+    public void numberBooleanConstNode(BooleanConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+    }
+
+    public void printBooleanConstNode(BooleanConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": BooleanConstNode ===> " + x.position.image);
+    }
+
+    // -------------------------- Constante char ----------------------
+    public void numberCharConstNode(CharConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+    }
+
+    public void printIntConstNode(CharConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": CharConstNode ===> " + x.position.image);
+    }
+
+    // -------------------------- Constante double ----------------------
+    public void numberDoubleConstNode(DoubleConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+    }
+
+    public void printIntConstNode(DoubleConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": DoubleConstNode ===> " + x.position.image);
+    }
+
+    // -------------------------- Constante byte ----------------------
+    public void numberByteConstNode(ByteConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+    }
+
+    public void printByteConstNode(ByteConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": ByteConstNode ===> " + x.position.image);
+    }
+
+    // -------------------------- Constante short ----------------------
+    public void numberShortConstNode(ShortConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+    }
+
+    public void printShortConstNode(ShortConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": ShortConstNode ===> " + x.position.image);
+    }
+
+    // -------------------------- Constante long ----------------------
+    public void numberLongConstNode(LongConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+    }
+
+    public void printLongConstNode(LongConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": LongConstNode ===> " + x.position.image);
+    }
+
+    // -------------------------- Constante float ----------------------
+    public void numberFloatConstNode(FloatConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+    }
+
+    public void printFloatConstNode(FloatConstNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": FloatConstNode ===> " + x.position.image);
     }
 
     // ------------------------------ Constante null --------------------------

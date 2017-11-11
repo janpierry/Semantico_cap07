@@ -15,9 +15,9 @@ public class RelationalNode extends ExpreNode {
         expr2 = e2;
     }
 
-    //Construtor para expressões lógicas tipo: a or b and c xor d...
+    //Construtor para expressoes logicas tipo: a or b and c xor d...
     public RelationalNode(Token a, ExpreNode e1, ListNode l){
-    	super(null);
+    	super(e1.position);
     	possivelNull = a;
     	expr1 = e1;
     	lista = l;
