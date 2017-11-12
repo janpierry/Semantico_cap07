@@ -854,7 +854,7 @@ public class PrintTree {
         
         System.out.println();
         System.out.print(x.number + ": RelationalLogicNode ===> " + x.position.image +
-            " " + x.possivelNull.image + " " + x.expr1.number);
+            " " + ((x.possivelNull == null) ? "null" : x.possivelNull.image) + " " + x.expr1.number);
 
         printExpreNode(x.expr1);
         
@@ -1020,7 +1020,7 @@ public class PrintTree {
         x.number = kk++;
     }
 
-    public void printIntConstNode(CharConstNode x) {
+    public void printCharConstNode(CharConstNode x) {
         if (x == null) {
             return;
         }
@@ -1038,7 +1038,7 @@ public class PrintTree {
         x.number = kk++;
     }
 
-    public void printIntConstNode(DoubleConstNode x) {
+    public void printDoubleConstNode(DoubleConstNode x) {
         if (x == null) {
             return;
         }
@@ -1245,6 +1245,20 @@ public class PrintTree {
             printIntConstNode((IntConstNode) x);
         } else if (x instanceof StringConstNode) {
             printStringConstNode((StringConstNode) x);
+        } else if (x instanceof BooleanConstNode) {
+            printBooleanConstNode((BooleanConstNode) x);
+        } else if (x instanceof CharConstNode) {
+            printCharConstNode((CharConstNode) x);
+        } else if (x instanceof DoubleConstNode) {
+            printDoubleConstNode((DoubleConstNode) x);
+        } else if (x instanceof ByteConstNode) {
+            printByteConstNode((ByteConstNode) x);
+        } else if (x instanceof ShortConstNode) {
+            printShortConstNode((ShortConstNode) x);
+        } else if (x instanceof LongConstNode) {
+            printLongConstNode((LongConstNode) x);
+        } else if (x instanceof FloatConstNode) {
+            printFloatConstNode((FloatConstNode) x);
         } else if (x instanceof NullConstNode) {
             printNullConstNode((NullConstNode) x);
         } else if (x instanceof IndexNode) {
@@ -1280,6 +1294,20 @@ public class PrintTree {
             numberIntConstNode((IntConstNode) x);
         } else if (x instanceof StringConstNode) {
             numberStringConstNode((StringConstNode) x);
+        } else if (x instanceof BooleanConstNode) {
+            numberBooleanConstNode((BooleanConstNode) x);
+        } else if (x instanceof CharConstNode) {
+            numberCharConstNode((CharConstNode) x);
+        } else if (x instanceof DoubleConstNode) {
+            numberDoubleConstNode((DoubleConstNode) x);
+        } else if (x instanceof ByteConstNode) {
+            numberByteConstNode((ByteConstNode) x);
+        } else if (x instanceof ShortConstNode) {
+            numberShortConstNode((ShortConstNode) x);
+        } else if (x instanceof LongConstNode) {
+            numberLongConstNode((LongConstNode) x);
+        } else if (x instanceof FloatConstNode) {
+            numberFloatConstNode((FloatConstNode) x);
         } else if (x instanceof NullConstNode) {
             numberNullConstNode((NullConstNode) x);
         } else if (x instanceof IndexNode) {
