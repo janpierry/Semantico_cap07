@@ -1534,15 +1534,15 @@ RecoverySet f1 = new RecoverySet(RPAREN).union(g),
           }
           e2 = expression(f3);
         if(l == null){
-                l = new ListNode(new RelationalNode(b, c, e2));
+                l = new ListNode(new RelationalLogicNode(b, c, e2));
         }else{
-                l.add(new RelationalNode(b, c, e2));
+                l.add(new RelationalLogicNode(b, c, e2));
         }
         }
-    {if (true) return new RelationalNode(a, e1, l);}
+    {if (true) return new ListRelationalLogicNode(a, e1, l);}
       } catch (ParseException e) {
         consumeUntil(g, e, "logicexpression");
-        {if (true) return new RelationalNode(a, e1, l);}
+        {if (true) return new ListRelationalLogicNode(a, e1, l);}
       }
     throw new Error("Missing return statement in function");
     } finally {

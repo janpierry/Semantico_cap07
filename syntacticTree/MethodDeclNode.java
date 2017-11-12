@@ -7,7 +7,6 @@ public class MethodDeclNode extends GeneralNode {
     public int dim;
     public Token hasfinal;
     public Token escopo;
-    public PrimitiveTypeNode tipo;
     public Token name;
     public MethodBodyNode body;
 

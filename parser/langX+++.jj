@@ -1022,18 +1022,18 @@ try{
   [a = <NOT>] e1 = expression(f3) ((b =  <XOR> | b = <OR> | b = <AND>) [c = <NOT>] e2 = expression(f3)
   {
   	if(l == null){
-  		l = new ListNode(new RelationalNode(b, c, e2));
+  		l = new ListNode(new RelationalLogicNode(b, c, e2));
   	}else{
-  		l.add(new RelationalNode(b, c, e2));
+  		l.add(new RelationalLogicNode(b, c, e2));
   	}
   }
   )*
-  { return new RelationalNode(a, e1, l);}
+  { return new ListRelationalLogicNode(a, e1, l);}
 }
 catch(ParseException e)
 {
 	consumeUntil(g, e, "logicexpression");
-	return new RelationalNode(a, e1, l);
+	return new ListRelationalLogicNode(a, e1, l);
 }
 }
 

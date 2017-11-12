@@ -6,7 +6,6 @@ import parser.*;
 public class VarDeclNode extends StatementNode {
     public ListNode vars;
     public Token hasfinal;
-    public PrimitiveTypeNode tipo;
     public Token tipoClasse;
     public Token escopo;
 

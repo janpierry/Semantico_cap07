@@ -167,6 +167,7 @@ public class PrintTree {
 		System.out.print(x.number + ": VarDeclNode ===> " + ((x.escopo == null) ? "null" : x.escopo.image)
         	+ " " + ((x.hasfinal == null) ? "null" : x.hasfinal.image) + " " + x.position.image +
             " " + x.vars.number);
+
         printvarListNode(x.vars);
     }
 
@@ -193,6 +194,31 @@ public class PrintTree {
 
         printVarNode((VarNode) x.node);
         printvarListNode(x.next);
+    }
+
+    // ---------------- Lista de atribuicoes de valores a variaveis ---------------- 
+    public void numberAtribListNode(ListNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+        numberAtribNode((AtribNode) x.node);
+        numberAtribListNode(x.next);
+    }
+
+    public void printAtribListNode(ListNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": ListNode (AtribNode) ===> " +
+            x.node.number + " " +
+            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+
+        printAtribNode((AtribNode) x.node);
+        printAtribListNode(x.next);
     }
 
     // -------------- Lista de construtores ---------------------
@@ -461,7 +487,7 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": AtribNode ===> " + x.expr1.number + " " +
+        System.out.print(x.number + ": AtribNode ===> " + x.expr1.number + " "
             + x.position.image + " " + x.expr2.number);
         printExpreNode(x.expr1);
         printExpreNode(x.expr2);
@@ -561,6 +587,158 @@ public class PrintTree {
         System.out.print(x.number + ": NopNode");
     }
 
+    // --------------------------- Chamada de metodo -------------------
+    public void numberMethodCallNode(MethodCallNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+
+		numberExpreNode(x.caminho);
+		numberExpreListNode(x.parametros);
+    }
+
+    public void printMethodCallNode(MethodCallNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": MethodCallNode ===> " + x.caminho.number + " " +
+            ((x.parametros == null) ? "null" : String.valueOf(x.parametros.number)));
+        printExpreNode(x.caminho);
+        printExpreListNode(x.parametros);
+    }
+
+    // --------------------------- Comando dowhile -------------------
+    public void numberDoWhileNode(DoWhileNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+
+        numberStatementNode(x.statement);
+        numberExpreNode(x.expressao);
+    }
+
+    public void printDoWhileNode(DoWhileNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": DoWhileNode ===> " +
+            x.position.image + " " +
+            x.statement.number + " " + 
+            ((x.expressao == null) ? "null" : String.valueOf(x.expressao.number)));
+
+        printStatementNode(x.statement);
+        printExpreNode(x.expressao);
+    }
+
+    // --------------------------- Comando while -------------------
+    public void numberWhileNode(WhileNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+
+        numberExpreNode(x.expressao);
+        numberStatementNode(x.statement);
+    }
+
+    public void printWhileNode(WhileNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": WhileNode ===> " +
+            x.position.image + " " +
+            ((x.expressao == null) ? "null" : String.valueOf(x.expressao.number)) + " " +
+            x.statement.number);
+
+        printExpreNode(x.expressao);
+        printStatementNode(x.statement);
+    }
+
+    // --------------------------- Comando switch -------------------
+    public void numberSwitchNode(SwitchNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+
+        numberSwitchCaseListNode(x.lista);
+    }
+
+    public void printSwitchNode(SwitchNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": SwitchNode ===> " +
+            x.position.image + " " + x.variavel.image + " " + 
+            ((x.lista == null) ? "null" : String.valueOf(x.lista.number)));
+
+        printSwitchCaseListNode(x.lista);
+    }
+
+    // --------------------- Lista de cases --------------------
+    public void numberSwitchCaseListNode(ListNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+        numberStatementNode((SwitchCaseNode) x.node);
+        numberStatementListNode(x.next);
+    }
+
+    public void printSwitchCaseListNode(ListNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": ListNode (SwitchCaseNode) ===> " +
+            x.node.number + " " +
+            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+
+        printStatementNode((SwitchCaseNode) x.node);
+        printStatementListNode(x.next);
+    }
+
+    // --------------------------- Cases do Switch -------------------
+    public void numberSwitchCaseNode(SwitchCaseNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+
+        numberExpreNode(x.factor);
+        numberStatementNode(x.statement);
+    }
+
+    public void printSwitchCaseNode(SwitchCaseNode x) {
+        if (x == null) {
+            return;
+        }
+
+        System.out.println();
+        System.out.print(x.number + ": SwitchCaseNode ===> " +
+            x.position.image + " " +
+            ((x.factor == null) ? "null" : String.valueOf(x.factor.number)) + " " +
+            x.doisp.image + " " +
+            ((x.statement == null) ? "null" : String.valueOf(x.statement.number)));
+    }
+
     // -------------------------- Alocacao de objeto ------------------------
     public void numberNewObjectNode(NewObjectNode x) {
         if (x == null) {
@@ -629,6 +807,60 @@ public class PrintTree {
         printExpreListNode(x.next);
     }
 
+    // --------------------- Expressao logica lista -------------------
+    public void numberListRelationalLogicNode(ListRelationalLogicNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+
+        numberExpreNode(x.expr1);
+        numberExpreListNode(x.lista);
+
+    }
+
+    public void printListRelationalLogicNode(ListRelationalLogicNode x) {
+        if (x == null) {
+            return;
+        }
+        
+        System.out.println();
+        System.out.print(x.number + ": ListRelationalLogicNode ===> " + ((x.possivelNull == null) ? "null" : x.possivelNull.image)  +
+            " " + x.expr1.number + " " + ((x.lista == null) ? "null" : String.valueOf(x.lista.number)));
+		
+        printExpreNode(x.expr1);
+        printExpreListNode(x.lista);
+        
+       
+    }
+
+    // --------------------- Expressao logica -------------------
+    public void numberRelationalLogicNode(RelationalLogicNode x) {
+        if (x == null) {
+            return;
+        }
+
+        x.number = kk++;
+
+        numberExpreNode(x.expr1);
+
+    }
+
+    public void printRelationalLogicNode(RelationalLogicNode x) {
+        if (x == null) {
+            return;
+        }
+        
+        System.out.println();
+        System.out.print(x.number + ": RelationalLogicNode ===> " + x.position.image +
+            " " + x.possivelNull.image + " " + x.expr1.number);
+
+        printExpreNode(x.expr1);
+        
+       
+    }
+
     // --------------------- Expressao relacional -------------------
     public void numberRelationalNode(RelationalNode x) {
         if (x == null) {
@@ -638,11 +870,7 @@ public class PrintTree {
         x.number = kk++;
 
         numberExpreNode(x.expr1);
-        if(x.expr2 != null){
-        	numberExpreNode(x.expr2);
-    	}else if(x.lista != null){
-    		numberExpreListNode(x.lista);
-    	}
+        numberExpreNode(x.expr2);
 
     }
 
@@ -650,33 +878,15 @@ public class PrintTree {
         if (x == null) {
             return;
         }
-        /*
+        
         System.out.println();
         System.out.print(x.number + ": RelationalNode ===> " + x.expr1.number +
             " " + x.position.image + " " + x.expr2.number);
-        */
 
-        if(x.expr2 != null){
-        	System.out.println();
-        	System.out.print(x.number + ": RelationalNode ===> " + x.expr1.number +
-            " " + x.position.image + " " + x.expr2.number);
-
-        	printExpreNode(x.expr1);
-        	printExpreNode(x.expr2);
-        }else if(x.lista != null){
-        	System.out.println();
-        	System.out.print(x.number + ": RelationalNode ===> " + ((x.possivelNull == null) ? "null" : x.possivelNull.image) + " " + x.expr1.number +
-            " " + x.lista.number);
-
-        	printExpreNode(x.expr1);
-        	printExpreListNode(x.lista);
-        }else{
-        	System.out.println();
-        	System.out.print(x.number + ": RelationalNode ===> " + x.position + " " + ((x.possivelNull == null) ? "null" : x.possivelNull.image) + " " +
-            " " + x.expr1.number);
-
-        	printExpreNode(x.expr1);
-        }
+        printExpreNode(x.expr1);
+        printExpreNode(x.expr2);
+        
+       
     }
 
     // ------------------------ Soma ou subtracao  -------------------
@@ -1043,6 +1253,10 @@ public class PrintTree {
             printDotNode((DotNode) x);
         } else if (x instanceof VarNode) {
             printVarNode((VarNode) x);
+        } else if (x instanceof RelationalLogicNode) {
+            printRelationalLogicNode((RelationalLogicNode) x);
+        } else if (x instanceof ListRelationalLogicNode) {
+            printListRelationalLogicNode((ListRelationalLogicNode) x);
         }
     }
 
@@ -1074,6 +1288,10 @@ public class PrintTree {
             numberDotNode((DotNode) x);
         } else if (x instanceof VarNode) {
             numberVarNode((VarNode) x);
+        } else if (x instanceof RelationalLogicNode) {
+            numberRelationalLogicNode((RelationalLogicNode) x);
+        } else if (x instanceof ListRelationalLogicNode) {
+            numberListRelationalLogicNode((ListRelationalLogicNode) x);
         }
     }
 
@@ -1101,6 +1319,14 @@ public class PrintTree {
             printSuperNode((SuperNode) x);
         } else if (x instanceof BreakNode) {
             printBreakNode((BreakNode) x);
+        } else if (x instanceof MethodCallNode) {
+            printMethodCallNode((MethodCallNode) x);
+        } else if (x instanceof DoWhileNode) {
+            printDoWhileNode((DoWhileNode) x);
+        } else if (x instanceof WhileNode) {
+            printWhileNode((WhileNode) x);
+        } else if (x instanceof SwitchNode) {
+            printSwitchNode((SwitchNode) x);
         }
     }
 
@@ -1127,6 +1353,14 @@ public class PrintTree {
             numberSuperNode((SuperNode) x);
         } else if (x instanceof BreakNode) {
             numberBreakNode((BreakNode) x);
+        } else if (x instanceof MethodCallNode) {
+            numberMethodCallNode((MethodCallNode) x);
+        } else if (x instanceof DoWhileNode) {
+            numberDoWhileNode((DoWhileNode) x);
+        } else if (x instanceof WhileNode) {
+            numberWhileNode((WhileNode) x);
+        } else if (x instanceof SwitchNode) {
+            numberSwitchNode((SwitchNode) x);
         }
     }
 }
