@@ -697,7 +697,7 @@ public class PrintTree {
 
         x.number = kk++;
         numberStatementNode((SwitchCaseNode) x.node);
-        numberStatementListNode(x.next);
+        numberSwitchCaseListNode(x.next);
     }
 
     public void printSwitchCaseListNode(ListNode x) {
@@ -711,7 +711,7 @@ public class PrintTree {
             ((x.next == null) ? "null" : String.valueOf(x.next.number)));
 
         printStatementNode((SwitchCaseNode) x.node);
-        printStatementListNode(x.next);
+        printSwitchCaseListNode(x.next);
     }
 
     // --------------------------- Cases do Switch -------------------
@@ -737,6 +737,11 @@ public class PrintTree {
             ((x.factor == null) ? "null" : String.valueOf(x.factor.number)) + " " +
             x.doisp.image + " " +
             ((x.statement == null) ? "null" : String.valueOf(x.statement.number)));
+
+        printExpreNode(x.factor);
+        printStatementNode(x.statement);
+
+
     }
 
     // -------------------------- Alocacao de objeto ------------------------
@@ -1267,6 +1272,8 @@ public class PrintTree {
             printDotNode((DotNode) x);
         } else if (x instanceof VarNode) {
             printVarNode((VarNode) x);
+        } else if (x instanceof ResultMethodCallNode) {
+            printMethodCallNode((MethodCallNode) x.methodCall);
         } else if (x instanceof RelationalLogicNode) {
             printRelationalLogicNode((RelationalLogicNode) x);
         } else if (x instanceof ListRelationalLogicNode) {
@@ -1355,6 +1362,8 @@ public class PrintTree {
             printWhileNode((WhileNode) x);
         } else if (x instanceof SwitchNode) {
             printSwitchNode((SwitchNode) x);
+        } else if (x instanceof SwitchCaseNode){
+        	printSwitchCaseNode((SwitchCaseNode) x);
         }
     }
 
@@ -1389,6 +1398,8 @@ public class PrintTree {
             numberWhileNode((WhileNode) x);
         } else if (x instanceof SwitchNode) {
             numberSwitchNode((SwitchNode) x);
+        } else if (x instanceof SwitchCaseNode){
+        	numberSwitchCaseNode((SwitchCaseNode) x);
         }
     }
 }

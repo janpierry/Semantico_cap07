@@ -162,6 +162,9 @@ public boolean iguaisXorDiferentes(short num1, short num2, short num3, short num
       //teste
       calc.start();
 
+      //teste nao funcional
+      x.y.z.start();
+
       return 0;   
 
    }
