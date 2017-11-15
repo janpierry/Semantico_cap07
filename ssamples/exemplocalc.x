@@ -159,6 +159,9 @@ public boolean iguaisXorDiferentes(short num1, short num2, short num3, short num
       	i = i + 1;
       }
 
+      //teste
+      calc.start();
+
       return 0;   
 
    }
