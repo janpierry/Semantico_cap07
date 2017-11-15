@@ -734,7 +734,7 @@ public class PrintTree {
         System.out.println();
         System.out.print(x.number + ": SwitchCaseNode ===> " +
             x.position.image + " " +
-            ((x.factor == null) ? "null" : String.valueOf(x.factor.number)) + " " +
+            ((x.factor == null) ? "" : String.valueOf(x.factor.number) + " ") +
             x.doisp.image + " " +
             ((x.statement == null) ? "null" : String.valueOf(x.statement.number)));
 
@@ -1272,8 +1272,6 @@ public class PrintTree {
             printDotNode((DotNode) x);
         } else if (x instanceof VarNode) {
             printVarNode((VarNode) x);
-        } else if (x instanceof ResultMethodCallNode) {
-            printMethodCallNode((MethodCallNode) x.methodCall);
         } else if (x instanceof RelationalLogicNode) {
             printRelationalLogicNode((RelationalLogicNode) x);
         } else if (x instanceof ListRelationalLogicNode) {

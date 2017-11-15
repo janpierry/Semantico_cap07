@@ -589,7 +589,7 @@ Reading from file ssamples/exemplocalc.x . . .
 583: ListNode (StatementNode) ===> 584 null
 584: BreakNode
 585: ListNode (SwitchCaseNode) ===> 586 null
-586: SwitchCaseNode ===> default null : 587
+586: SwitchCaseNode ===> default : 587
 587: BreakNode
 588: ListNode (StatementNode) ===> 589 611
 589: IfNode ===> 590 594 601
